@@ -7,19 +7,25 @@ import jakarta.persistence.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String name;
     private double price;
     private String image;
     private String detailDesc;
     private String shortDesc;
-    private long quantity;
-    private long sold;
+    private Long quantity;
+    private Long sold;
     private String factory;
     private String target;
-    public Product(){}
 
-    public Product( String name, double price, String image, String detailDesc, String shortDesc, long quantity, long sold, String factory, String target) {
+    public Product() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Product( String name, double price, String image, String detailDesc, String shortDesc, Long quantity, Long sold, String factory, String target) {
         this.name = name;
         this.price = price;
         this.image = image;
@@ -31,11 +37,7 @@ public class Product {
         this.target = target;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -83,7 +85,7 @@ public class Product {
         return quantity;
     }
 
-    public void setQuantity(long quantity) {
+    public void setQuantity(Long quantity) {
         this.quantity = quantity;
     }
 
@@ -91,7 +93,7 @@ public class Product {
         return sold;
     }
 
-    public void setSold(long sold) {
+    public void setSold(Long sold) {
         this.sold = sold;
     }
 
@@ -109,5 +111,21 @@ public class Product {
 
     public void setTarget(String target) {
         this.target = target;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", image='" + image + '\'' +
+                ", detailDesc='" + detailDesc + '\'' +
+                ", shortDesc='" + shortDesc + '\'' +
+                ", quantity=" + quantity +
+                ", sold=" + sold +
+                ", factory='" + factory + '\'' +
+                ", target='" + target + '\'' +
+                '}';
     }
 }
