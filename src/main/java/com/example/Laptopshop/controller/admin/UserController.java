@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,12 +32,17 @@ public class UserController {
         model.addAttribute("users", this.userService.getAllUser());
         return "admin/user/index";
     }
-    
+
     @GetMapping("admin/user/create")
     public String getCreateUserForm(Model model) {
         model.addAttribute("roles", this.roleService.getAllRole());
         model.addAttribute("user", new User());
         return "admin/user/createUser";
+    }
+    @GetMapping("/admin/user/{userId}")
+    public String getPageUserDetail(Model model,@PathVariable Long userId){
+        model.addAttribute("user", this.userService.getUserById(userId));
+        return "admin/user/userDetail";
     }
     @PostMapping("/admin/user")
     public String createUser(@ModelAttribute("user") User user, @RequestParam("lamhello") MultipartFile file) {

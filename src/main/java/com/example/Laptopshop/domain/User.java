@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,12 +17,15 @@ public class User {
     private String phone;
     private String avatar;
     @ManyToOne
-    @JoinColumn(name="role_id")
+    @JoinColumn(name = "role_id")
     private Role role;
-    //User-order: N-1
+    // User-order: N-1
     @OneToMany(mappedBy = "user")
     private List<Order> order;
-    public User(){};
+
+    public User() {
+    };
+
     public User(String email, String password, String fullName, String address, String phone, String avatar) {
         this.email = email;
         this.password = password;
